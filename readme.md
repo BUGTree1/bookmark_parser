@@ -5,6 +5,7 @@
 
 Simple python parser for html bookmarks exported from a web browser that:
 - Saves all urls it finds there to a file
+- Prints what domains it found and how many
 - Can replace a two letter country code that some websites put at the start of their urls so `en` would turn `pl.website.com` to `en.website.com`
 - Can start saving the urls after a specified regex string is encountered
 
