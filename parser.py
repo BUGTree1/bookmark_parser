@@ -4,15 +4,32 @@ import re
 input_path  = 'bookmarks.html'
 output_path = 'links.txt'
 desired_country_code = 'pl'
+excluded_country_codes = ['su','st','cr','ai','me','co','io','nz']
 start_string = r".*Xd.*"
 
-def replace_country(link):
-    if not desired_country_code == '':
-        country_match = re.search(r"//..\.", link)
-        if country_match:
-            old_code = link[country_match.start() + 2:country_match.end() - 1]
-            return link.replace(old_code,desired_country_code,1)
+def replace_string_range(string, replacement, start, end):
+    return string[:start] + replacement + string[end:]
+
+def replace_country_prefix(link):
+    country_match = re.search(r"//..\.", link)
+    if country_match:
+        #old_code = link[country_match.start() + 2:country_match.end() - 1]
+        return replace_string_range(link,desired_country_code,country_match.start() + 2,country_match.end() - 1)
     return link
+
+def replace_country_suffix(link):
+    country_match = re.search(r"\.([^./]*)(?=/)", link)
+    if country_match:
+        old_code = link[country_match.start() + 1:country_match.end()]
+        if len(old_code) == 2 and not (old_code in excluded_country_codes):
+            return replace_string_range(link,desired_country_code,country_match.start() + 1,country_match.end())
+    return link
+
+def replace_country(link):
+    if desired_country_code == '':
+        return link
+    else:
+        return replace_country_suffix(replace_country_prefix(link))
 
 input_file  = io.open(input_path , mode="r", encoding="utf-8")
 output_file = io.open(output_path, mode="w+", encoding="utf-8")
