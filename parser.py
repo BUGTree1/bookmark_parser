@@ -18,7 +18,11 @@ input_file  = io.open(input_path , mode="r", encoding="utf-8")
 output_file = io.open(output_path, mode="w+", encoding="utf-8")
 started = False
 
+if start_string == '':
+    started = True
+
 sites = {}
+links_count = 0
 
 for line in input_file:
     if not started:
@@ -38,6 +42,7 @@ for line in input_file:
 
         link = replace_country(link)
         print("ADDED   : " + link)
+        links_count += 1
         
         site_match = re.search(r"//[^/]*", link)
         site = link[site_match.start() + 2:site_match.end()]
@@ -61,6 +66,11 @@ for site,count in sites.items():
     better_sites[site] = count
 
 sorted_sites = dict(sorted(better_sites.items(),reverse=True , key=lambda item: item[1]))
+sites_count = 0
 
 for site,count in sorted_sites.items():
     print(f"SITE COUNT: {str(count).ljust(4,' ')} URL: {site} ")
+    sites_count += 1
+
+print(f"FOUND {sites_count} DIFFERENT DOMAINS")
+print(f"FOUND {links_count} DIFFERENT URLS")
