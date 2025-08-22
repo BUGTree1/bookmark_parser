@@ -12,10 +12,11 @@ Simple python parser for html bookmarks exported from a web browser that:
 ## Configuration
 
 You have configure the script with the variables:
-- `input_path` - string with a path to your bookmarks html file
-- `output_path` - string with a path where the output urls should be saved
-- OPTIONAL `desired_country_code` -  string with the desired two letter country code
-- OPTIONAL `start_string` - regex string that starts the process so any urls before it will be omitted
+- `input_path`                    : string with a path to your bookmarks html file
+- `output_path`                   : string with a path where the output urls should be saved
+- OPTIONAL `desired_country_code` : string with the desired two letter country code
+- OPTIONAL `start_string`         : regex string that starts the process so any urls before it will be omitted
+- OPTIONAL `end_string`           : regex string that end the process so any urls after it will be omitted
 
 ## Quick Start
 

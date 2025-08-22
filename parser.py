@@ -6,6 +6,7 @@ output_path = 'links.txt'
 desired_country_code = 'pl'
 excluded_country_codes = ['su','st','cr','ai','me','co','io','nz']
 start_string = r".*Xd.*"
+end_string = r""
 
 def replace_string_range(string, replacement, start, end):
     return string[:start] + replacement + string[end:]
@@ -50,6 +51,9 @@ for line in input_file:
             print("SKIPPED : " + line[:len(line) - 1])
     
     if started:
+        if not (end_string == r"") and re.search(end_string, line):
+            break
+
         match = re.search(r"\"http[^\"]*\"", line)
         if not match:
             print("SKIPPED : " + line[:len(line) - 1])
