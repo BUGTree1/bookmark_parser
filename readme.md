@@ -9,14 +9,20 @@ Simple python parser for html bookmarks exported from a web browser that:
 - Can replace a two letter country code that some websites put in their urls so `pl` would turn `uk.website.com` to `pl.website.com` or `website.uk` to `pl.website.pl`
 - Can start saving the urls after a specified regex string is encountered
 
+## Dependencies
+
+[url-parser](https://pypi.org/project/url-parser/)
+
 ## Configuration
 
 You have configure the script with the variables:
-- `input_path`                    : string with a path to your bookmarks html file
-- `output_path`                   : string with a path where the output urls should be saved
-- OPTIONAL `desired_country_code` : string with the desired two letter country code
-- OPTIONAL `start_string`         : regex string that starts the process so any urls before it will be omitted
-- OPTIONAL `end_string`           : regex string that end the process so any urls after it will be omitted
+- `input_path`                     : string with a path to your bookmarks html file
+- `output_path`                    : string with a path where the output urls should be saved
+- OPTIONAL `desired_country_code`  : string with the desired two letter country code
+- OPTIONAL `start_string`          : regex string that starts the process so any urls before it will be omitted
+- OPTIONAL `end_string`            : regex string that end the process so any urls after it will be omitted
+- OPTIONAL `sites_supported_files` : list of strings with the paths to files containing the sites supported by something (e.g. yt-dlp supportedsites.md)
+- OPTIONAL `replace_domains`       : Dictionary of string domains to be replaced with other domain
 
 ## Quick Start
 
