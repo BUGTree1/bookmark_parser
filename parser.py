@@ -13,7 +13,7 @@ end_string = r""
 replace_domains = {"xcancel":"x"}
 sites_supported_files = ['downloaders/*']
 
-DEBUG = True
+DEBUG = False
 
 def replace_string_range(string, replacement, start, end):
     return string[:start] + replacement + string[end:]
